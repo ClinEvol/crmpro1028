@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ujiuye.crmpro.indexvalue.mapper.DatacollectMapper" >
+  <resultMap id="BaseResultMap" type="com.ujiuye.crmpro.indexvalue.pojo.Datacollect" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="turnover" property="turnover" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="superiority" property="superiority" jdbcType="VARCHAR" />
+    <result column="inforiority" property="inforiority" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="employeecount" property="employeecount" jdbcType="INTEGER" />
+    <result column="buildtime" property="buildtime" jdbcType="DATE" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cname, turnover, time, business, superiority, inforiority, sort, employeecount, 
+    buildtime, remark, other
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ujiuye.crmpro.indexvalue.pojo.DatacollectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from datacollect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from datacollect
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from datacollect
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ujiuye.crmpro.indexvalue.pojo.DatacollectExample" >
+    delete from datacollect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ujiuye.crmpro.indexvalue.pojo.Datacollect" >
+    insert into datacollect (id, cname, turnover, 
+      time, business, superiority, 
+      inforiority, sort, employeecount, 
+      buildtime, remark, other
+      )
+    values (#{id,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{turnover,jdbcType=DOUBLE}, 
+      #{time,jdbcType=DATE}, #{business,jdbcType=VARCHAR}, #{superiority,jdbcType=VARCHAR}, 
+      #{inforiority,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{employeecount,jdbcType=INTEGER}, 
+      #{buildtime,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ujiuye.crmpro.indexvalue.pojo.Datacollect" >
+    insert into datacollect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="superiority != null" >
+        superiority,
+      </if>
+      <if test="inforiority != null" >
+        inforiority,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="employeecount != null" >
+        employeecount,
+      </if>
+      <if test="buildtime != null" >
+        buildtime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="superiority != null" >
+        #{superiority,jdbcType=VARCHAR},
+      </if>
+      <if test="inforiority != null" >
+        #{inforiority,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="employeecount != null" >
+        #{employeecount,jdbcType=INTEGER},
+      </if>
+      <if test="buildtime != null" >
+        #{buildtime,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ujiuye.crmpro.indexvalue.pojo.DatacollectExample" resultType="java.lang.Integer" >
+    select count(*) from datacollect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update datacollect
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cname != null" >
+        cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.turnover != null" >
+        turnover = #{record.turnover,jdbcType=DOUBLE},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=DATE},
+      </if>
+      <if test="record.business != null" >
+        business = #{record.business,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superiority != null" >
+        superiority = #{record.superiority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inforiority != null" >
+        inforiority = #{record.inforiority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeecount != null" >
+        employeecount = #{record.employeecount,jdbcType=INTEGER},
+      </if>
+      <if test="record.buildtime != null" >
+        buildtime = #{record.buildtime,jdbcType=DATE},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update datacollect
+    set id = #{record.id,jdbcType=INTEGER},
+      cname = #{record.cname,jdbcType=VARCHAR},
+      turnover = #{record.turnover,jdbcType=DOUBLE},
+      time = #{record.time,jdbcType=DATE},
+      business = #{record.business,jdbcType=VARCHAR},
+      superiority = #{record.superiority,jdbcType=VARCHAR},
+      inforiority = #{record.inforiority,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      employeecount = #{record.employeecount,jdbcType=INTEGER},
+      buildtime = #{record.buildtime,jdbcType=DATE},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      other = #{record.other,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ujiuye.crmpro.indexvalue.pojo.Datacollect" >
+    update datacollect
+    <set >
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="superiority != null" >
+        superiority = #{superiority,jdbcType=VARCHAR},
+      </if>
+      <if test="inforiority != null" >
+        inforiority = #{inforiority,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="employeecount != null" >
+        employeecount = #{employeecount,jdbcType=INTEGER},
+      </if>
+      <if test="buildtime != null" >
+        buildtime = #{buildtime,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ujiuye.crmpro.indexvalue.pojo.Datacollect" >
+    update datacollect
+    set cname = #{cname,jdbcType=VARCHAR},
+      turnover = #{turnover,jdbcType=DOUBLE},
+      time = #{time,jdbcType=DATE},
+      business = #{business,jdbcType=VARCHAR},
+      superiority = #{superiority,jdbcType=VARCHAR},
+      inforiority = #{inforiority,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      employeecount = #{employeecount,jdbcType=INTEGER},
+      buildtime = #{buildtime,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
